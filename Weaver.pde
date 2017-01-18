@@ -14,10 +14,13 @@ double [] px = new double[points];
 double [] py = new double[points];
 double [] lengths = new double[points];
 
-color blue = color(0,0,255);
+int [] output = new int[lines+1];
 
 boolean paused = true;
 double radius = 0;
+
+int linesDrawn = 0;
+int currentPos = 0;
 
 int width = 600;
 int height = 600;
@@ -45,19 +48,32 @@ void setup() {
     double dy = py[i] - py[0];
     lengths[i] = Math.floor( Math.sqrt(dx*dx+dy*dy) );
     
-    stroke(blue); strokeWeight(3); point((float)(px[i]/(radius*2)*width), (float)(py[i]/(radius*2)*height));
+    stroke(color(0, 0, 255)); strokeWeight(3); point((float)(px[i]/(radius*2)*width), (float)(py[i]/(radius*2)*height));
   }
+
+  // record the starting point
+  output[linesDrawn] = currentPos;
 }
 
 void mouseReleased() {
   paused = paused ? false : true;  
 }
 
-int linesDrawn = 0;
-int currentPos = 0;
+boolean outputWritten = false;
 void draw() {
   if (paused) return;
-  if (linesDrawn >= lines) return;
+  if (linesDrawn >= lines) {
+    if (!outputWritten) {
+      PrintWriter file;
+      file = createWriter("output.txt");
+      for(int i = 0; i < lines + 1; ++i) {
+        file.println(output[i]);
+      }
+      file.flush();
+      file.close();
+    }
+    return;
+  }
   
   strokeWeight(1);
   for(int i = 0; i < fps; ++i) {
@@ -65,6 +81,8 @@ void draw() {
     
     drawLine();
     linesDrawn++;
+
+    output[linesDrawn] = currentPos;
   }
   image(img, width, 0, width, height);
   
