@@ -1,12 +1,31 @@
+// input filename
 String imageFilename = "ali.jpg";
+
+// output filename
+String outputFilename = "output.txt";
+
+// total number of points around the circle
 int points = 256;
+
+// total number of lines to be drawn
 int lines = 3000;
 
+// how many points to jump? helpful to save some extra lines to be drawn
 int jump = 0;
+
+// how many pixel color should be removed from the original image?
+// lower is lighter, range: 0-255
 int removeColor = 35;
+
+// how dark a line should be drawn?
+// lower is lighter, range: 0-255
 int drawAlpha = 35;
 
+// how many lines to be drawn in every iteration?
 int fps = 100;
+
+// pause after every iteration?
+boolean stepByStep = false;
 
 PImage img;
 
@@ -56,22 +75,25 @@ void setup() {
 }
 
 void mouseReleased() {
+  // click to pause or resume
   paused = paused ? false : true;  
 }
 
 boolean outputWritten = false;
 void draw() {
   if (paused) return;
+
   if (linesDrawn >= lines) {
     if (!outputWritten) {
       PrintWriter file;
-      file = createWriter("output.txt");
+      file = createWriter(outputFilename);
       for(int i = 0; i < lines + 1; ++i) {
         file.println(output[i]);
       }
       file.flush();
       file.close();
     }
+
     return;
   }
   
@@ -85,7 +107,7 @@ void draw() {
     output[linesDrawn] = currentPos;
   }
   image(img, width, 0, width, height);
-  
+
   // draw progress bar
   strokeWeight(10);
   int barY = 10;
@@ -99,6 +121,10 @@ void draw() {
   // completed bar
   stroke(color(0, 255, 0));
   line(width - barWidth/2, barY, width - barWidth/2 + barWidth*progress, barY);
+
+  if(stepByStep) {
+    paused = true;
+  }
 }
 
 void drawLine() {
@@ -154,6 +180,4 @@ void drawLine() {
   
   // set it the current pos
   currentPos = bestNextPos;
-  
-  //paused = true;
 }
