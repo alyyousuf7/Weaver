@@ -2,11 +2,11 @@
 The idea is to take an image and come up with data to weave it using a single thread on a circular rim.
 
 Basically this: *A picture is worth a thousand words.*
-![Work by Petros Vrellis](http://static.boredpanda.com/blog/wp-content/uploads/2016/08/single-thread-art-painting-petros-vrellis-fb.png)
+![Work by Petros Vrellis](https://user-images.githubusercontent.com/14050128/65774967-b74a9200-e158-11e9-8949-f77d1162b44e.png)
 
 ## Screenshots
-![](/weaver_start.png?raw=true)
-![](/weaver_end.png?raw=true)
+![Circle Frame](https://user-images.githubusercontent.com/14050128/65774788-663a9e00-e158-11e9-9f45-405036d38be7.png)
+![Square Frame](https://user-images.githubusercontent.com/14050128/65774834-7ce0f500-e158-11e9-941d-2204f92e5e52.png)
 
 ## How does it work?
 This piece of software requires 3 inputs from the user:
@@ -33,13 +33,12 @@ All three inputs are crucial on how the final result is going to look. The progr
 - Hit `Run` or press `CTRL+R` to execute the application.
 - Click anywhere on the application to start processing.
 - Click again to pause.
-- After the process is complete, a file will be generated, `output.txt`. This file contains the positions of each point where the thread should be knitted next.
- 
+- After the process is complete, a text file will be generated. This file contains the positions of each point where the thread should be knitted next.
+
 ## Configuration
-Open up the code, `Weaver.pde`. You'll find comments on first few lines about all the configurable variables.
+The configuration is set from `setup()` function in `Weaver.pde` file.
 
 ## Credits
 Kudos to [i-make-robots](https://github.com/i-make-robots/) for originally writting [this algorithm](https://github.com/i-make-robots/weaving_algorithm).
 
 I changed it a little bit to clean up the code, improve GUI and add some extra features.
-
