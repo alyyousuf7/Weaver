@@ -17,19 +17,24 @@ void setup() {
 
   block_size = height;
 
-  PImage img = loadImage("ali.jpg");
+  try {
+    Example example;
 
-  // crop to square
-  int min_length = img.width < img.height ? img.width : img.height;
-  img = img.get(0, 0, min_length, min_length);
+    // if you want a black/white output
+    // example = example01();
 
-  // setup frame
-  frame = new CircleFrame(min_length/2, 256);
-  // frame = new SquareFrame(min_length, 256);
+    // if you want colored output, but have colors separated out yourself
+    // example = example02();
 
-  // setup weaving layer
-  color draw_color = color(color(0, 0, 0), 25);
-  layer = new MonochromeLayer(frame, img, new WeaveConfig(3000, 0, 35, draw_color));
+    // if you want colored output, and rely on Weaver's algorithm to separate out colors for you
+    example = example03();
+
+    frame = example.frame;
+    layer = example.layer;
+  } catch(Exception e) {
+    println(e);
+    exit();
+  }
 }
 
 void drawAll() {
@@ -46,8 +51,10 @@ void drawAll() {
   image(layer.getOriginalImage(), 0, 0, block_size, block_size);
 
   translate(-block_size, 0);
-  PShape lines = frame.getLineShape(layer.getLines());
-  shape(lines, 0, 0, block_size, block_size);
+  PShape[] lines = frame.getLineShapes(layer.getLines());
+  for (PShape line : lines) {
+    shape(line, 0, 0, block_size, block_size);
+  }
 }
 
 void mouseReleased() {
@@ -86,7 +93,7 @@ void writeToFile(File selection) {
   PrintWriter file;
   file = createWriter(selection.getAbsolutePath());
   for (Line line : layer.getLines()) {
-    file.println(line.index);
+    file.println(line.index + " ; Color: #" + hex(line.c));
   }
   file.flush();
   file.close();

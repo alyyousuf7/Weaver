@@ -5,10 +5,14 @@ Basically this: *A picture is worth a thousand words.*
 ![Work by Petros Vrellis](https://user-images.githubusercontent.com/14050128/65774967-b74a9200-e158-11e9-8949-f77d1162b44e.png)
 
 ## Screenshots
+### Multiple colors
+![Color Circle Frame](https://user-images.githubusercontent.com/14050128/65891086-69829380-e3bd-11e9-9364-e8dadb31fef2.png)
+
+### Grayscale
 ![Circle Frame](https://user-images.githubusercontent.com/14050128/65774788-663a9e00-e158-11e9-9f45-405036d38be7.png)
 ![Square Frame](https://user-images.githubusercontent.com/14050128/65774834-7ce0f500-e158-11e9-941d-2204f92e5e52.png)
 
-## How does it work?
+## Basic algorithm
 This piece of software requires 3 inputs from the user:
 - A picture to be drawn
 - Total points/nails on a circular rim, `P`
@@ -36,7 +40,7 @@ All three inputs are crucial on how the final result is going to look. The progr
 - After the process is complete, a text file will be generated. This file contains the positions of each point where the thread should be knitted next.
 
 ## Configuration
-The configuration is set from `setup()` function in `Weaver.pde` file.
+The `setup()` function in `Weaver.pde` chooses one of the example configurations. Check the `example.pde` to modify the configuration of each example.
 
 ## Credits
 Kudos to [i-make-robots](https://github.com/i-make-robots/) for originally writting [this algorithm](https://github.com/i-make-robots/weaving_algorithm).

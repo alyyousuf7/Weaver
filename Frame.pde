@@ -18,30 +18,30 @@ abstract class Frame {
     return frame;
   }
 
-  public PShape getLineShape(ArrayList<Line> lines) {
+  public PShape[] getLineShapes(ArrayList<Line> lines) {
     PVector size = this.getSize();
-    PShape shape = createShape();
-
-    shape.beginShape(LINES);
-    shape.strokeWeight(1);
-
-    // add a line to bottom to fixate the size of the shape...
-    shape.vertex(0, size.y);
-    shape.vertex(size.x, size.y);
+    PShape[] shapes = new PShape[lines.size() - 1];
 
     PVector[] points = this.getPoints();
     for (int i = 1; i < lines.size(); ++i) {
       Line start_line = lines.get(i-1);
       Line end_line = lines.get(i);
 
-      shape.stroke(end_line.c);
+      shapes[i-1] = createShape();
+      shapes[i-1].beginShape(LINES);
+      shapes[i-1].strokeWeight(1);
 
-      shape.vertex(points[start_line.index].x, points[start_line.index].y);
-      shape.vertex(points[end_line.index].x, points[end_line.index].y);
+      // add a line to bottom to fixate the size of the shape...
+      shapes[i-1].vertex(0, size.y);
+      shapes[i-1].vertex(size.x, size.y);
+      shapes[i-1].stroke(end_line.c);
+
+      shapes[i-1].vertex(points[start_line.index].x, points[start_line.index].y);
+      shapes[i-1].vertex(points[end_line.index].x, points[end_line.index].y);
+      shapes[i-1].endShape();
     }
 
-    shape.endShape();
-    return shape;
+    return shapes;
   }
 
   public PVector getSize() {
