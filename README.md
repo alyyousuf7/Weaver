@@ -39,6 +39,8 @@ All three inputs are crucial on how the final result is going to look. The progr
 - Click again to pause.
 - After the process is complete, a text file will be generated. This file contains the positions of each point where the thread should be knitted next.
 
+**Note:** Those of you who are downloading the repository as *.zip* file, you must rename the folder `Weaver-master` to `Weaver` before opening on Processing.
+
 ## Configuration
 The `setup()` function in `Weaver.pde` chooses one of the example configurations. Check the `example.pde` to modify the configuration of each example.
 
