@@ -4,6 +4,17 @@ The idea is to take an image and come up with data to weave it using a single th
 Basically this: *A picture is worth a thousand words.*
 ![Work by Petros Vrellis](https://user-images.githubusercontent.com/14050128/65774967-b74a9200-e158-11e9-8949-f77d1162b44e.png)
 
+## Actual result
+| Output | Input |
+|-------|--------|
+| ![Output](https://user-images.githubusercontent.com/14050128/74280548-8ef5b580-4d3e-11ea-911e-317ddced9812.jpg) | ![Input](https://user-images.githubusercontent.com/14050128/74280649-c4020800-4d3e-11ea-9fd9-e638893d009b.jpg) |
+
+No. of pins: 254
+
+No. of lines: 4000 (Approx. 1.75 km thread)
+
+Credit: [@larryisgood](https://www.instagram.com/larryisgood/)
+
 ## Screenshots
 ### Multiple colors
 ![Color Circle Frame](https://user-images.githubusercontent.com/14050128/65891086-69829380-e3bd-11e9-9364-e8dadb31fef2.png)
