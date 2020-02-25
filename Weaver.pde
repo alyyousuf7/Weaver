@@ -68,7 +68,7 @@ void draw() {
   if (!paused) {
     for (int i = 0; i < fps; ++i) {
       boolean layerDone = layer.drawNextLine();
-      if (layer.drawNextLine()) {
+      if (layerDone) {
         done = true;
       }
     }
